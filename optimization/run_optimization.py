@@ -8,7 +8,6 @@ from torch import optim
 from tqdm import tqdm
 
 from criteria.clip_loss import CLIPLoss
-from models.stylegan2.model import Generator
 import clip
 from utils import ensure_checkpoint_exists
 
@@ -26,6 +25,11 @@ def main(args):
     ensure_checkpoint_exists(args.ckpt)
     text_inputs = torch.cat([clip.tokenize(args.description)]).cuda()
     os.makedirs(args.results_dir, exist_ok=True)
+    
+    if args.arch == 'stylegan2':
+        from models.stylegan2.model import Generator
+    elif args.arch == 'swagan':
+        from models.stylegan2.swagan import Generator
 
     g_ema = Generator(args.stylegan_size, 512, 8)
     g_ema.load_state_dict(torch.load(args.ckpt)["g_ema"], strict=False)
