@@ -111,6 +111,7 @@ if __name__ == "__main__":
                                                                       "not provided")
     parser.add_argument("--save_intermediate_image_every", type=int, default=20, help="if > 0 then saves intermidate results during the optimization")
     parser.add_argument("--results_dir", type=str, default="results")
+    parser.add_argument('--arch', type=str, default='stylegan2', help='model architectures (stylegan2 | swagan)')
 
     args = parser.parse_args()
 
