@@ -8,8 +8,8 @@ from torch import nn
 from torch.nn import functional as F
 from torch.autograd import Function
 
-from op import FusedLeakyReLU, fused_leaky_relu, upfirdn2d, conv2d_gradfix
-from model import ModulatedConv2d, StyledConv, ConstantInput, PixelNorm, Upsample, Downsample, Blur, EqualLinear, ConvLayer
+from models.stylegan2.op import FusedLeakyReLU, fused_leaky_relu, upfirdn2d
+from model.stylegan2.model import ModulatedConv2d, StyledConv, ConstantInput, PixelNorm, Upsample, Downsample, Blur, EqualLinear, ConvLayer
 
 def get_haar_wavelet(in_channels):
     haar_wav_l = 1 / (2 ** 0.5) * torch.ones(1, 2)
